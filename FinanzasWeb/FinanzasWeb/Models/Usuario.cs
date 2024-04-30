@@ -8,5 +8,7 @@
         public string Email { get; set; } = null!;
         public string Clave { get; set; } = null!;
         public DateTime FechaRegistro { get; set; }
+
+        public HashSet<Movimiento> Movimientos { get; set; } = new HashSet<Movimiento>();
     }
 }

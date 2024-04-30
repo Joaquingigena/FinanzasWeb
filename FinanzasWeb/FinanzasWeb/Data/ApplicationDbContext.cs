@@ -29,7 +29,14 @@ namespace FinanzasWeb.Data
             //TipoMovimiento
             modelBuilder.Entity<TipoMovimiento>().Property(t => t.Nombre).HasMaxLength(50);
 
-            //
+            //Categoria
+            modelBuilder.Entity<Categoria>().Property(u => u.Nombre).HasMaxLength(100);
+
+            //Movimiento
+            modelBuilder.Entity<Movimiento>().Property(u => u.Fecha).HasColumnType("date");
+            modelBuilder.Entity<Movimiento>().Property(u => u.Descripcion).HasMaxLength(200);
+            modelBuilder.Entity<Movimiento>().Property(u => u.Monto).HasPrecision(18,2);
+
         }
     }
 }
