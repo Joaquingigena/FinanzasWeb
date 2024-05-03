@@ -11,7 +11,9 @@ namespace FinanzasWeb.Utility
             CreateMap<CategoriaDTO, Categoria>();
             
             CreateMap<TipoMovimientoDTO, TipoMovimiento>();
-        
+
+            CreateMap<UsuarioDTO, Usuario>();
+
         }
     }
 }

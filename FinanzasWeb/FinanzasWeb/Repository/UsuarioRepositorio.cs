@@ -45,7 +45,7 @@ namespace FinanzasWeb.Repository
             }
         }
 
-        public async Task<Usuario> Crear(Usuario usuario)
+        public async Task<Usuario> Registrar(Usuario usuario)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace FinanzasWeb.Repository
 
         }
 
-        public async Task<bool> Elimnar(Usuario usuario)
+        public async Task<bool> Eliminar(Usuario usuario)
         {
             try
             {
