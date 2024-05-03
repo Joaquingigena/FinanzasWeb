@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "4nrtoXeINxreeTW/sTSQCnzjQGpPTbEf0+ptSe/cT/rC9heouBsfDCpyJLhBuslRyRA4gprARLF/zcZpFeDvhA==",
+  "dgSpecHash": "xbh6Sz/TUn8cYEBKb/Leplq/OTOT21JwwioE9PI87lu4VaVw/MA8QtxJWMje5ITC/CJdf3JZlVBsm+LRP2W8ZQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\joaquin gigena\\OneDrive\\Documentos\\FinanzasWeb\\FinanzasWeb\\FinanzasWeb\\FinanzasWeb.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\joaquin gigena\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
+    "C:\\Users\\joaquin gigena\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\joaquin gigena\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\joaquin gigena\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\joaquin gigena\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -62,6 +64,8 @@
     "C:\\Users\\joaquin gigena\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
     "C:\\Users\\joaquin gigena\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\joaquin gigena\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
+    "C:\\Users\\joaquin gigena\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
+    "C:\\Users\\joaquin gigena\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
     "C:\\Users\\joaquin gigena\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\joaquin gigena\\.nuget\\packages\\system.resources.resourcemanager\\4.3.0\\system.resources.resourcemanager.4.3.0.nupkg.sha512",
     "C:\\Users\\joaquin gigena\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",

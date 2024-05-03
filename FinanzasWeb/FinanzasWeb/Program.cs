@@ -1,3 +1,4 @@
+using AutoMapper;
 using FinanzasWeb.Data;
 using FinanzasWeb.Interfaces;
 using FinanzasWeb.Repository;
@@ -13,9 +14,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+builder.Services.AddScoped<ITipoMovimientoRepositorio, TipoMovimientoRepositorio>();
+builder.Services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(op => op.UseSqlServer("name=cadenaSql"));
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

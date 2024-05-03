@@ -74,3 +74,5 @@ C:\Users\joaquin gigena\OneDrive\Documentos\FinanzasWeb\FinanzasWeb\FinanzasWeb\
 C:\Users\joaquin gigena\OneDrive\Documentos\FinanzasWeb\FinanzasWeb\FinanzasWeb\obj\Debug\net7.0\FinanzasWeb.pdb
 C:\Users\joaquin gigena\OneDrive\Documentos\FinanzasWeb\FinanzasWeb\FinanzasWeb\obj\Debug\net7.0\FinanzasWeb.genruntimeconfig.cache
 C:\Users\joaquin gigena\OneDrive\Documentos\FinanzasWeb\FinanzasWeb\FinanzasWeb\obj\Debug\net7.0\ref\FinanzasWeb.dll
+C:\Users\joaquin gigena\OneDrive\Documentos\FinanzasWeb\FinanzasWeb\FinanzasWeb\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\joaquin gigena\OneDrive\Documentos\FinanzasWeb\FinanzasWeb\FinanzasWeb\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
