@@ -14,6 +14,9 @@ namespace FinanzasWeb.Utility
 
             CreateMap<UsuarioDTO, Usuario>();
 
+            CreateMap<MovimientoDTO, Movimiento>();
+                //.ForMember(ent => ent.TipoMovimiento,
+                //dto => dto.MapFrom(origen => origen.TipoMovimientoId));
         }
     }
 }

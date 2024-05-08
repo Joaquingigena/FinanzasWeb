@@ -1,6 +1,7 @@
 ﻿using FinanzasWeb.Data;
 using FinanzasWeb.Interfaces;
 using FinanzasWeb.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinanzasWeb.Repository
 {
@@ -29,24 +30,56 @@ namespace FinanzasWeb.Repository
             }
         }
 
-        public Task<bool> Elimnar(Movimiento movimiento)
+        public async Task<bool> Eliminar(Movimiento movimiento)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Movimientos.Remove(movimiento);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        public Task<List<Movimiento>> Listar()
+        public async Task<List<Movimiento>> Listar()
         {
-            throw new NotImplementedException();
+            return await _context.Movimientos.ToListAsync();
         }
 
-        public Task<Movimiento> Modificar(Movimiento movimiento)
+        public async Task<Movimiento> Modificar(Movimiento movimiento)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Movimientos.Update(movimiento);
+                await _context.SaveChangesAsync();
+
+                return movimiento;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        public Task<Movimiento> ObtenerUno(int id)
+        public async Task<Movimiento> ObtenerUno(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+               var movimiento= await _context.Movimientos.FirstOrDefaultAsync(m => m.Id == id);
+
+                return movimiento;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
