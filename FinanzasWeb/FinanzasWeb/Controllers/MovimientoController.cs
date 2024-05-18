@@ -20,22 +20,25 @@ namespace FinanzasWeb.Controllers
             _mapper = mapper;
         }
 
+        //TODO Falta corregir mapeo de Movimiento a MovimientoDTO
 
         [HttpPost]
         public async Task<ActionResult<MovimientoDTO>> Crear(MovimientoDTO movimiento)
         {
-            var user = _mapper.Map<Movimiento>(movimiento);
+            var mov = _mapper.Map<Movimiento>(movimiento);
 
-            await _repositorio.Crear(user);
+            await _repositorio.Crear(mov);
 
             return Ok(movimiento);
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Movimiento>>> Listar()
+        public async Task<ActionResult<List<MovimientoDTO>>> Listar()
         {
 
-            return await _repositorio.Listar();
+            var lista= await _repositorio.Listar();
+
+            return _mapper.Map<List<MovimientoDTO>>(lista);
         }
 
         [HttpPut]
