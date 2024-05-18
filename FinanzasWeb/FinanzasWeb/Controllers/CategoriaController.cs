@@ -29,5 +29,13 @@ namespace FinanzasWeb.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<CategoriaDTO>>> Listar()
+        {
+            var lista = await _repositorio.Listar();
+
+            return _mapper.Map<List<CategoriaDTO>>(lista);
+        }
     }
 }

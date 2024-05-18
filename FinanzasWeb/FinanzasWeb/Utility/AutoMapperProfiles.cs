@@ -9,7 +9,8 @@ namespace FinanzasWeb.Utility
         public AutoMapperProfiles()
         {
 
-            CreateMap<CategoriaDTO, Categoria>();
+            CreateMap<CategoriaDTO, Categoria>()
+                .ReverseMap();
 
             CreateMap<TipoMovimientoDTO, TipoMovimiento>();
 

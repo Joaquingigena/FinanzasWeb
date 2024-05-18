@@ -22,6 +22,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(op => op.UseSqlServer("name=
 
 builder.Services.AddAutoMapper(typeof(Program));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("NuevaPolitica", app => {
+        app.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,6 +40,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("NuevaPolitica");
 
 app.UseAuthorization();
 
