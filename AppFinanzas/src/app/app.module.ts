@@ -7,15 +7,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { LoginComponent } from './Components/login/login.component';
+import { LayoutComponent } from './Components/layout/layout.component';
+import { SharedModule } from './Reutilizable/shared/shared.module';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    SharedModule
     
   ],
   providers: [],
