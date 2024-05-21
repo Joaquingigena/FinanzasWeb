@@ -22,6 +22,7 @@ namespace FinanzasWeb.Controllers
         }
 
         [HttpPost]
+        [Route("Crear")]
         public async Task<ActionResult<Usuario>> Crear(UsuarioDTO usuario)
         {
             var user = _mapper.Map<Usuario>(usuario);
@@ -32,12 +33,14 @@ namespace FinanzasWeb.Controllers
         }
 
         [HttpGet]
+        [Route("Listar")]
         public async Task<ActionResult<List<Usuario>>>Listar(){
             
             return await _repositorio.Listar();
         }
 
         [HttpPut]
+        [Route("Modificar")]
         public async Task<ActionResult> Modificar(UsuarioDTO usuario)
         {
             var user = _mapper.Map<Usuario>(usuario);
@@ -48,6 +51,7 @@ namespace FinanzasWeb.Controllers
         }
 
         [HttpDelete]
+        [Route("Eliminar")]
         public async Task<ActionResult> Eliminar(UsuarioDTO usuario)
         {
             var user = _mapper.Map<Usuario>(usuario);

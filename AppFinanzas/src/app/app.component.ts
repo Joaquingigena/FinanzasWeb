@@ -11,17 +11,36 @@ export class AppComponent {
 
   //categorias: Categoria[];
   title = 'AppFinanzas';
+  //cat: Categoria;
 
   constructor(
     _categoriaService: CategoriaService
-  ){
-    _categoriaService.listar().subscribe({
-      next:(data)=>{
-        console.log(data);
-      },
-      error:(e)=>{
-        console.log(e);
-      }
-    })
-  }
+  ){}
+
+    //Funcionan estas pruebas
+  //   this.cat={
+  //     id:0,
+  //     nombre:"Cliente",
+  //     tipoMovimientoId:1
+  //   }
+
+  //   _categoriaService.guardar(this.cat).subscribe({
+  //     next:(data)=>{
+
+  //       console.log(data);
+  //     },
+  //     error:(e)=>{
+  //       console.log("Hubo un error")
+  //     }
+  //   })
+
+  //   _categoriaService.listar().subscribe({
+  //     next:(data)=>{
+  //       console.log(data);
+  //     },
+  //     error:(e)=>{
+  //       console.log(e);
+  //     }
+  //   })
+  // }
 }

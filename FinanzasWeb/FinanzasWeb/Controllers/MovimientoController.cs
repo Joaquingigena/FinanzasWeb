@@ -20,9 +20,10 @@ namespace FinanzasWeb.Controllers
             _mapper = mapper;
         }
 
-        //TODO Falta corregir mapeo de Movimiento a MovimientoDTO
+        
 
         [HttpPost]
+        [Route("Crear")]
         public async Task<ActionResult<MovimientoDTO>> Crear(MovimientoDTO movimiento)
         {
             var mov = _mapper.Map<Movimiento>(movimiento);
@@ -33,6 +34,7 @@ namespace FinanzasWeb.Controllers
         }
 
         [HttpGet]
+        [Route("Listar")]
         public async Task<ActionResult<List<MovimientoDTO>>> Listar()
         {
 
@@ -42,6 +44,7 @@ namespace FinanzasWeb.Controllers
         }
 
         [HttpPut]
+        [Route("Modificar")]
         public async Task<ActionResult> Modificar(MovimientoDTO movimiento)
         {
             var mov = _mapper.Map<Movimiento>(movimiento);
@@ -52,6 +55,7 @@ namespace FinanzasWeb.Controllers
         }
 
         [HttpDelete]
+        [Route("Eliminar")]
         public async Task<ActionResult> Eliminar(MovimientoDTO movimiento)
         {
             var mov = _mapper.Map<Movimiento>(movimiento);

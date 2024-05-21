@@ -17,6 +17,10 @@ export class CategoriaService {
   ) { }
 
   listar():Observable<Categoria>{
-    return this.http.get<any>(this.urlApi);
+    return this.http.get<any>(`${this.urlApi}Listar`);
+  }
+
+  guardar(request:Categoria):Observable<Categoria>{
+    return this.http.post<any>(`${this.urlApi}Agregar`,request);
   }
 }

@@ -21,6 +21,7 @@ namespace FinanzasWeb.Controllers
         }
 
         [HttpPost]
+        [Route("Agregar")]
         public async Task<ActionResult> Crear(CategoriaDTO categoria)
         {
             var cat = _mapper.Map<Categoria>(categoria);
@@ -31,6 +32,7 @@ namespace FinanzasWeb.Controllers
         }
 
         [HttpGet]
+        [Route("Listar")]
         public async Task<ActionResult<List<CategoriaDTO>>> Listar()
         {
             var lista = await _repositorio.Listar();
