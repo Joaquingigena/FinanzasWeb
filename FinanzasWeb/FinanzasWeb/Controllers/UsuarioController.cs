@@ -60,5 +60,22 @@ namespace FinanzasWeb.Controllers
 
             return Ok(user);
         }
+
+        [HttpPost]
+        [Route("Loguear")]
+        public async Task<ActionResult<UsuarioDTO>> Loguear(LoginDTO loginDTO)
+        {
+            Usuario user = await _repositorio.Loguear(loginDTO);
+
+            if (user == null) {
+                return BadRequest("Correo o contraseña incorrectos...");
+            }
+            else
+            {
+                UsuarioDTO userDTO=_mapper.Map<UsuarioDTO>(user);
+
+                return Ok(userDTO);
+            }
+        }
     }
 }

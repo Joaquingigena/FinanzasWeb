@@ -1,4 +1,5 @@
-﻿using FinanzasWeb.Models;
+﻿using FinanzasWeb.DTOs;
+using FinanzasWeb.Models;
 
 namespace FinanzasWeb.Interfaces
 {
@@ -9,5 +10,6 @@ namespace FinanzasWeb.Interfaces
         Task<Usuario> Registrar(Usuario usuario);
         Task<bool> Eliminar(Usuario usuario);
         Task<Usuario> Modificar(Usuario usuario);
+        Task<Usuario> Loguear(LoginDTO loginDTO);
     }
 }

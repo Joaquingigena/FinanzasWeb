@@ -14,7 +14,8 @@ namespace FinanzasWeb.Utility
 
             CreateMap<TipoMovimientoDTO, TipoMovimiento>();
 
-            CreateMap<UsuarioDTO, Usuario>();
+            CreateMap<UsuarioDTO, Usuario>()
+                .ReverseMap();
 
             CreateMap<MovimientoDTO, Movimiento>()
                 .ReverseMap();

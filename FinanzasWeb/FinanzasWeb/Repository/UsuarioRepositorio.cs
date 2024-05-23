@@ -1,4 +1,5 @@
 ﻿using FinanzasWeb.Data;
+using FinanzasWeb.DTOs;
 using FinanzasWeb.Interfaces;
 using FinanzasWeb.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -84,6 +85,14 @@ namespace FinanzasWeb.Repository
             await _context.SaveChangesAsync();
 
             return usuario;
+        }
+
+        public async Task<Usuario> Loguear(LoginDTO loginDTO)
+        {
+            Usuario user= await _context.Usuarios.FirstOrDefaultAsync(u => u.Clave == loginDTO.Clave && u.Email == loginDTO.Correo);
+
+            return user;
+            
         }
     }
 }
