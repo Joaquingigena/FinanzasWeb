@@ -21,7 +21,7 @@ export class UsuarioService {
     return this.http.get<Usuario>(`${this.urlApi}Listar`);
   }
 
-  guardar(request:Usuario):Observable<Usuario>{
+  registrar(request:Usuario):Observable<Usuario>{
     return this.http.post<Usuario>(`${this.urlApi}Crear`,request);
   }
 

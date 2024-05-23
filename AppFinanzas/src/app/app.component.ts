@@ -15,23 +15,23 @@ export class AppComponent {
   //categorias: Categoria[];
   title = 'AppFinanzas';
   //cat: Categoria;
-  login: Login;
+  //login: Login;
 
   constructor(
     _categoriaService: CategoriaService,
     _usuarioService: UsuarioService
   ){
-    this.login= {
-      correo: "lalala",
-      clave: "lala"
-    }
+    // this.login= {
+    //   correo: "lalala",
+    //   clave: "lala"
+    // }
 
-    _usuarioService.loguear(this.login).subscribe({
-      next:(data: Usuario)=>{
-        console.log(data);
-      },
-      error:(e)=>{}
-    })
+    // _usuarioService.loguear(this.login).subscribe({
+    //   next:(data: Usuario)=>{
+    //     console.log(data);
+    //   },
+    //   error:(e)=>{}
+    // })
 
   }
 

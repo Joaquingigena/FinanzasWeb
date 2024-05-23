@@ -1,0 +1,42 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .registro-container {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .registro-card {
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  mat-card-content .content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  @media (max-width: 600px) {
+    .registro-card {
+      padding: 15px;
+    }
+  }
+  
