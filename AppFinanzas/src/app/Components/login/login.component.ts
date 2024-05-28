@@ -39,9 +39,8 @@ export class LoginComponent {
     console.log(login);
     this._usuarioService.loguear(login).subscribe({
       next:(data)=>{
-        
           console.log(data);
-        
+          this.router.navigate(["pages"]);
       },
       error:(e)=>{
         console.log(e);

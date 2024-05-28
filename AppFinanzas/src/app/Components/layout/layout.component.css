@@ -1,0 +1,12 @@
+.menu-item {
+    display: flex;
+    align-items: center;
+}
+
+.barra-color{
+    background-color: rgba(0, 0, 70, 0.6);
+}
+
+.icon{
+    margin: 5px;
+}

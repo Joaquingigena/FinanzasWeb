@@ -1,4 +1,12 @@
-import { Component } from '@angular/core';
+import { Component,OnInit,AfterViewInit,ViewChild } from '@angular/core';
+
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+
+import { Movimiento } from 'src/app/Interfaces/movimiento';
+import { MovimientoService } from 'src/app/Services/movimiento.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-movimiento',
@@ -6,5 +14,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./movimiento.component.css']
 })
 export class MovimientoComponent {
+
+  columbaTabla: string[] = [""];
 
 }
