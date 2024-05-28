@@ -3,25 +3,45 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: linear-gradient(135deg, #74ebd5, #ACB6E5);
     padding: 10px;
     box-sizing: border-box;
   }
   
   .registro-container {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
   }
   
   .registro-card {
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border-radius: 8px;
+    background-color: white;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
   
+  .registro-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+
   .header {
     text-align: center;
     margin-bottom: 20px;
+    color: #333;
+  }
+
+  .logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-top: -10px;
   }
   
   .full-width {
@@ -31,7 +51,22 @@
   mat-card-content .content {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+  }
+
+  mat-card-actions.registro-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  button.mat-raised-button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+  }
+
+  button.mat-raised-button:hover {
+    background: linear-gradient(135deg, #5a67d8, #6b46c1);
   }
   
   @media (max-width: 600px) {

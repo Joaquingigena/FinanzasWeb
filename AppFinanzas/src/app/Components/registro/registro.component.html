@@ -2,7 +2,9 @@
     <div class="registro-container">
       <mat-card class="registro-card">
         <div class="header">
-          <h2>Registro</h2>
+          <img src="assets/logo.png" alt="Logo" class="logo">
+          <h2>Crear Cuenta</h2>
+          <p class="subtitle">Registrarse</p>
         </div>
         <mat-card-content class="content">
           <form [formGroup]="formularioRegistro" (ngSubmit)="registrar()">
@@ -51,6 +53,12 @@
             </button>
           </form>
         </mat-card-content>
+
+        <mat-card-actions class="registro-actions">
+          <button mat-button color="accent" routerLink="/login">
+            ¿Ya tienes una cuenta? Inicia sesión
+          </button>
+        </mat-card-actions>
       </mat-card>
     </div>
   </div>

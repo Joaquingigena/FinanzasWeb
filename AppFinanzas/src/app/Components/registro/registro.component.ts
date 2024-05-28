@@ -17,7 +17,8 @@ export class RegistroComponent {
 
   constructor(
     private fb: FormBuilder,
-    private _usuarioService: UsuarioService
+    private _usuarioService: UsuarioService,
+    private router : Router
   ){
     this.formularioRegistro= fb.group({
       nombre:["",Validators.required],
@@ -40,8 +41,13 @@ export class RegistroComponent {
     this._usuarioService.registrar(usuario).subscribe({
       next:(data)=>{
         console.log("usuario creado exitosamente:" + data);
+        //Aca habria que mostrar un cartel de usuario creado exitosament
+        this.router.navigate(["login"]);
+
       },
-      error:(e)=>{}
+      error:(e)=>{
+        console.log("Hubio un error");
+      }
     });
   }
 }
