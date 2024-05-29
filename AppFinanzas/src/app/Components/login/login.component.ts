@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import { UsuarioService } from 'src/app/Services/usuario.service';
 import { Login } from 'src/app/Interfaces/login';
 import { Observable } from 'rxjs';
+import { UtilidadService } from 'src/app/Reutilizable/utilidad.service';
 
 
 
@@ -21,7 +22,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private _usuarioService: UsuarioService
+    private _usuarioService: UsuarioService,
+    private _utilidadService: UtilidadService
   ){
     this.formularioLogin= fb.group({
       correo: ["",Validators.required],
@@ -32,6 +34,7 @@ export class LoginComponent {
   iniciarSesion(){
 
     const login: Login = {
+      
       correo: this.formularioLogin.value.correo,
       clave: this.formularioLogin.value.clave
     }
@@ -40,6 +43,7 @@ export class LoginComponent {
     this._usuarioService.loguear(login).subscribe({
       next:(data)=>{
           console.log(data);
+          this._utilidadService.guardarUsuario(data);
           this.router.navigate(["pages"]);
       },
       error:(e)=>{
