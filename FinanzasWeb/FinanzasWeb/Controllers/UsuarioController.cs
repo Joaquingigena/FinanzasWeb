@@ -25,56 +25,97 @@ namespace FinanzasWeb.Controllers
         [Route("Crear")]
         public async Task<ActionResult<Usuario>> Crear(UsuarioDTO usuario)
         {
-            var user = _mapper.Map<Usuario>(usuario);
+            try
+            {
+                var user = _mapper.Map<Usuario>(usuario);
 
-            await _repositorio.Registrar(user);
+                await _repositorio.Registrar(user);
 
-            return Ok(user);
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet]
         [Route("Listar")]
         public async Task<ActionResult<List<Usuario>>>Listar(){
-            
-            return await _repositorio.Listar();
+
+            try
+            {
+                return await _repositorio.Listar();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpPut]
         [Route("Modificar")]
         public async Task<ActionResult> Modificar(UsuarioDTO usuario)
         {
-            var user = _mapper.Map<Usuario>(usuario);
+            try
+            {
+                var user = _mapper.Map<Usuario>(usuario);
 
-            await _repositorio.Modificar(user);
+                await _repositorio.Modificar(user);
 
-            return Ok(user);
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpDelete]
         [Route("Eliminar")]
         public async Task<ActionResult> Eliminar(UsuarioDTO usuario)
         {
-            var user = _mapper.Map<Usuario>(usuario);
+            try
+            {
+                var user = _mapper.Map<Usuario>(usuario);
 
-            await _repositorio.Eliminar(user);
+                await _repositorio.Eliminar(user);
 
-            return Ok(user);
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpPost]
         [Route("Loguear")]
         public async Task<ActionResult<UsuarioDTO>> Loguear(LoginDTO loginDTO)
         {
-            Usuario user = await _repositorio.Loguear(loginDTO);
-
-            if (user == null) {
-                return BadRequest("Correo o contraseña incorrectos...");
-            }
-            else
+            try
             {
-                UsuarioDTO userDTO=_mapper.Map<UsuarioDTO>(user);
+                Usuario user = await _repositorio.Loguear(loginDTO);
 
-                return Ok(userDTO);
+                if (user == null)
+                {
+                    return BadRequest("Correo o contraseña incorrectos...");
+                }
+                else
+                {
+                    UsuarioDTO userDTO = _mapper.Map<UsuarioDTO>(user);
+
+                    return Ok(userDTO);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

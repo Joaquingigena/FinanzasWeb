@@ -24,20 +24,36 @@ namespace FinanzasWeb.Controllers
         [Route("Agregar")]
         public async Task<ActionResult> Crear(CategoriaDTO categoria)
         {
-            var cat = _mapper.Map<Categoria>(categoria);
+            try
+            {
+                  var cat = _mapper.Map<Categoria>(categoria);
 
             await _repositorio.Crear(cat);
 
             return Ok();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet]
         [Route("Listar")]
         public async Task<ActionResult<List<CategoriaDTO>>> Listar()
         {
-            var lista = await _repositorio.Listar();
+            try
+            {
+                var lista = await _repositorio.Listar();
 
-            return _mapper.Map<List<CategoriaDTO>>(lista);
+                return _mapper.Map<List<CategoriaDTO>>(lista);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

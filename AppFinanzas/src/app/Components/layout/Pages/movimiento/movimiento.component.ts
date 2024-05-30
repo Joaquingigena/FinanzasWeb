@@ -15,6 +15,8 @@ import Swal from 'sweetalert2';
 })
 export class MovimientoComponent {
 
-  columbaTabla: string[] = [""];
+  columbaTabla: string[] = ["Fecha",""];
 
 }
+
+

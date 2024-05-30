@@ -23,11 +23,19 @@ namespace FinanzasWeb.Controllers
         [HttpPost]
         public async Task<ActionResult> Crear(TipoMovimientoDTO tipoMov)
         {
-            var tipo = _mapper.Map<TipoMovimiento>(tipoMov);
+            try
+            {
+                var tipo = _mapper.Map<TipoMovimiento>(tipoMov);
 
-            await _repositorio.Crear(tipo);
+                await _repositorio.Crear(tipo);
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

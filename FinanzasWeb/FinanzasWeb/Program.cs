@@ -1,7 +1,9 @@
 using AutoMapper;
+using AutoMapper.Internal;
 using FinanzasWeb.Data;
 using FinanzasWeb.Interfaces;
 using FinanzasWeb.Repository;
+using FinanzasWeb.Utility;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,13 @@ builder.Services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
 builder.Services.AddScoped<IMovimientoRepositorio, MovimientoRepositorio>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(op => op.UseSqlServer("name=cadenaSql"));
+
+var mapperConfig = new MapperConfiguration(mc =>
+{
+    mc.AllowNullCollections = true;
+    mc.ShouldMapMethod = (m => false);//this is solution
+    mc.AddProfile(new AutoMapperProfiles());
+});
 
 builder.Services.AddAutoMapper(typeof(Program));
 

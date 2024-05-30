@@ -22,47 +22,101 @@ namespace FinanzasWeb.Controllers
 
         
 
-        [HttpPost]
-        [Route("Crear")]
-        public async Task<ActionResult<MovimientoDTO>> Crear(MovimientoDTO movimiento)
-        {
-            var mov = _mapper.Map<Movimiento>(movimiento);
+        //[HttpPost]
+        //[Route("Crear")]
+        //public async Task<ActionResult<MovimientoDTO>> Crear(MovimientoDTO movimiento)
+        //{
+        //    try
+        //    {
+        //        var mov = _mapper.Map<Movimiento>(movimiento);
 
-            await _repositorio.Crear(mov);
+        //        await _repositorio.Crear(mov);
 
-            return Ok(movimiento);
-        }
+        //        return Ok(movimiento);
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //}
 
         [HttpGet]
         [Route("Listar")]
         public async Task<ActionResult<List<MovimientoDTO>>> Listar()
         {
 
-            var lista= await _repositorio.Listar();
+            try
+            {
+                var lista = await _repositorio.Listar();
 
-            return _mapper.Map<List<MovimientoDTO>>(lista);
+                return _mapper.Map<List<MovimientoDTO>>(lista);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        [HttpPut]
-        [Route("Modificar")]
-        public async Task<ActionResult> Modificar(MovimientoDTO movimiento)
+        [HttpGet]
+        [Route("ListarCat")]
+        public async Task<ActionResult<List<Movimiento>>> ListarCat()
         {
-            var mov = _mapper.Map<Movimiento>(movimiento);
 
-            await _repositorio.Modificar(mov);
+            try
+            {
+                List<Movimiento> lista = await _repositorio.Listar();
 
-            return Ok(mov);
+                
+
+                return lista;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        [HttpDelete]
-        [Route("Eliminar")]
-        public async Task<ActionResult> Eliminar(MovimientoDTO movimiento)
-        {
-            var mov = _mapper.Map<Movimiento>(movimiento);
+        //[HttpPut]
+        //[Route("Modificar")]
+        //public async Task<ActionResult> Modificar(MovimientoDTO movimiento)
+        //{
+        //    try
+        //    {
+        //        var mov = _mapper.Map<Movimiento>(movimiento);
 
-            await _repositorio.Eliminar(mov);
+        //        await _repositorio.Modificar(mov);
 
-            return Ok(mov);
-        }
+        //        return Ok();
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //}
+
+        //[HttpDelete]
+        //[Route("Eliminar")]
+        //public async Task<ActionResult> Eliminar(MovimientoDTO movimiento)
+        //{
+        //    try
+        //    {
+        //        var mov = _mapper.Map<Movimiento>(movimiento);
+
+        //        await _repositorio.Eliminar(mov);
+
+        //        return Ok(mov);
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //}
     }
 }
