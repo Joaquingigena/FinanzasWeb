@@ -48,7 +48,10 @@ namespace FinanzasWeb.Repository
 
         public async Task<List<Movimiento>> Listar()
         {
-            return await _context.Movimientos.ToListAsync();
+            return await _context.Movimientos
+                .Include(m => m.Categoria)
+                .Include(m => m.TipoMovimiento)
+                .ToListAsync();
         }
 
         public async Task<Movimiento> Modificar(Movimiento movimiento)
