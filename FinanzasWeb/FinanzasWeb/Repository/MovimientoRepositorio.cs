@@ -46,11 +46,12 @@ namespace FinanzasWeb.Repository
             }
         }
 
-        public async Task<List<Movimiento>> Listar()
+        public async Task<List<Movimiento>> Listar(int idUsuario)
         {
             return await _context.Movimientos
                 .Include(m => m.Categoria)
                 .Include(m => m.TipoMovimiento)
+                .Where(m => m.UsuarioId== idUsuario)
                 .ToListAsync();
         }
 
