@@ -42,7 +42,7 @@ namespace FinanzasWeb.Controllers
         }
 
         [HttpGet]
-        [Route("Listar{id:int}")]
+        [Route("Listar/{id:int}")]
         public async Task<ActionResult<List<MovimientoDTO>>> Listar(int id)
         {
 

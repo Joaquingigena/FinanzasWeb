@@ -6,13 +6,15 @@ import { MovimientoComponent } from './Pages/movimiento/movimiento.component';
 import { CategoriaComponent } from './Pages/categoria/categoria.component';
 import { InformesComponent } from './Pages/informes/informes.component';
 import { SharedModule } from 'src/app/Reutilizable/shared/shared.module';
+import { ModalMovimientoComponent } from './Modales/modal-movimiento/modal-movimiento.component';
 
 
 @NgModule({
   declarations: [
     MovimientoComponent,
     CategoriaComponent,
-    InformesComponent
+    InformesComponent,
+    ModalMovimientoComponent
   ],
   imports: [
     CommonModule,

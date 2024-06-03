@@ -21,6 +21,7 @@ namespace FinanzasWeb.Controllers
         }
 
         [HttpPost]
+        
         public async Task<ActionResult> Crear(TipoMovimientoDTO tipoMov)
         {
             try
@@ -30,6 +31,21 @@ namespace FinanzasWeb.Controllers
                 await _repositorio.Crear(tipo);
 
                 return Ok();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
+        [Route("Listar")]
+        public async Task<ActionResult<List<TipoMovimiento>>> Listar()
+        {
+            try
+            {
+                return await _repositorio.Listar();
             }
             catch (Exception)
             {

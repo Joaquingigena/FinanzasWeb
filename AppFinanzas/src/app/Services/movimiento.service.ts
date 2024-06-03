@@ -16,8 +16,8 @@ export class MovimientoService {
     private http:HttpClient
   ) { }
 
-  listar():Observable<Movimiento>{
-    return this.http.get<Movimiento>(`${this.urlApi}Listar`);
+  listar(id : any):Observable<Movimiento>{
+    return this.http.get<Movimiento>(`${this.urlApi}Listar/${id}`);
   }
 
   guardar(request:Movimiento):Observable<Movimiento>{

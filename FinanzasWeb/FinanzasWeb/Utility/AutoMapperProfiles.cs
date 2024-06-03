@@ -17,14 +17,15 @@ namespace FinanzasWeb.Utility
             CreateMap<UsuarioDTO, Usuario>()
                 .ReverseMap();
 
-            CreateMap<MovimientoDTO, Movimiento>()
-                .ReverseMap();
-                //.ForMember(ent => ent.DescricionTipoMovimiento,
-                //dto => dto.MapFrom(origen => origen.TipoMovimiento.Nombre))
-                //.ForMember(ent => ent.DescripcionCategoria,
-                //dto => dto.MapFrom(origen => origen.Categoria.Nombre));
-                
-                
+            CreateMap<Movimiento, MovimientoDTO>()
+                .ForMember(ent => ent.DescripcionTipoMovimiento,
+                dto => dto.MapFrom(origen => origen.TipoMovimiento.Nombre))
+                .ForMember(ent => ent.DescripcionCategoria,
+                dto => dto.MapFrom(origen => origen.Categoria.Nombre));
+
+            CreateMap<MovimientoDTO, Movimiento>();
+
+
 
 
         }

@@ -1,6 +1,7 @@
 ﻿using FinanzasWeb.Data;
 using FinanzasWeb.Interfaces;
 using FinanzasWeb.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinanzasWeb.Repository
 {
@@ -21,6 +22,19 @@ namespace FinanzasWeb.Repository
                 await _context.SaveChangesAsync();
 
                 return tipoMovimiento;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<List<TipoMovimiento>> Listar()
+        {
+            try
+            {
+                return await _context.TipoMovimientos.ToListAsync();
             }
             catch (Exception)
             {
