@@ -16,7 +16,7 @@ import { UtilidadService } from 'src/app/Reutilizable/utilidad.service';
   templateUrl: './modal-movimiento.component.html',
   styleUrls: ['./modal-movimiento.component.css']
 })
-export class ModalMovimientoComponent {
+export class ModalMovimientoComponent implements OnInit {
 
   formularioMovimiento: FormGroup;
   tituloAccion: string= "Agregar";
@@ -26,7 +26,7 @@ export class ModalMovimientoComponent {
 
   constructor(
     private  modalActual: MatDialogRef<ModalMovimientoComponent>,
-    @Inject(MAT_DIALOG_DATA) public datosMovimiento: Movimiento,
+    @Inject(MAT_DIALOG_DATA) public datosMovimiento: any,
     private _categoriaService: CategoriaService,
     private _tipoMovService: TipoMovimientoService,
     private _movimientoService: MovimientoService,
@@ -41,8 +41,10 @@ export class ModalMovimientoComponent {
        fecha:["",Validators.required]
     });
 
+    console.log(datosMovimiento.data.movimiento);
+    console.log(datosMovimiento.data.id);
     //Si viene con datos se actualiza
-    if(datosMovimiento!=null){
+    if(datosMovimiento.movimiento!=null){
       this.tituloAccion="Editar";
       this.botonAccion="Actualizar";
     }
@@ -63,6 +65,58 @@ export class ModalMovimientoComponent {
 
   }
 
- //Me quede aca
+ngOnInit(): void {
+  this.formularioMovimiento.patchValue({
+    idTipoMovimiento: this.datosMovimiento.movimiento.tipoMovimientoId,
+    idCategoria: this.datosMovimiento.movimiento.categoriaId,
+    descripcion: this.datosMovimiento.movimiento.descripcion,
+    monto: this.datosMovimiento.movimiento.monto,
+    fecha: this.datosMovimiento.movimiento.fecha
+  });
+}
 
+
+guardarEditarMovimiento(){
+
+  const movimiento: Movimiento= {
+    id: this.datosMovimiento.movimiento== null? 0: this.datosMovimiento.id,
+    usuarioId: this.datosMovimiento.id,
+    tipoMovimientoId: this.formularioMovimiento.value.idTipoMovimiento,
+    categoriaId: this.formularioMovimiento.value.idCategoria,
+    descripcion: this.formularioMovimiento.value.descripcion,
+    monto: this.formularioMovimiento.value.monto,
+    fecha: this.formularioMovimiento.value.fecha
+  }
+
+  if(movimiento.id == null){
+
+    this._movimientoService.guardar(movimiento).subscribe({
+      next:(data)=>{
+        if(data !=null){
+          this._utilidadService.mostrarAlerta("Movimiento agrego exitosamente","Exito");
+          this.modalActual.close("true");
+        }
+        else{
+          this._utilidadService.mostrarAlerta("No se pudo agregar el movimiento","Error");
+        }
+      },
+      error:(e)=>{console.log(e)}
+    });
+  }
+  else{
+    this._movimientoService.modificar(movimiento).subscribe({
+      next:(data)=>{
+        if(data !=null){
+          this._utilidadService.mostrarAlerta("Movimiento modificado exitosamente","Exito");
+          this.modalActual.close("true");
+        }
+        else{
+          this._utilidadService.mostrarAlerta("No se pudo agregar el movimiento","Error");
+        }
+      },
+      error:(e)=>{console.log(e)}
+    });
+  }
+
+}
 }

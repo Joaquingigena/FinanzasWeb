@@ -3,10 +3,10 @@ export interface Movimiento {
     id:number;
     usuarioId:number;
     tipoMovimientoId:number;
-    descripcionTipoMovimiento: string;
+    descripcionTipoMovimiento?: string;
     descripcion:string;
     monto: number;
     categoriaId: number;
-    descripcionCategoria:string;
+    descripcionCategoria?:string;
     fecha: Date;
 }
