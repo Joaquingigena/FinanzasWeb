@@ -91,7 +91,7 @@ namespace FinanzasWeb.Controllers
 
                 await _repositorio.Modificar(mov);
 
-                return Ok();
+                return Ok(movimiento);
             }
             catch (Exception)
             {

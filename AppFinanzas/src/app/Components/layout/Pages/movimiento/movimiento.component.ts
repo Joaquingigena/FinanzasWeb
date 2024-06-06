@@ -19,7 +19,7 @@ import { ModalMovimientoComponent } from '../../Modales/modal-movimiento/modal-m
 export class MovimientoComponent implements OnInit {
 
   usuario :Usuario;
-  columnaTabla: string[] = ["Fecha","Tipo","Categoria","Descripcion","Monto"];
+  columnaTabla: string[] = ["Fecha","Tipo","Categoria","Descripcion","Monto","Acciones"];
   dataInicio: Movimiento[]=[];
   dataListaMovimientos= new MatTableDataSource(this.dataInicio);
   @ViewChild(MatPaginator) paginacionTabla!:MatPaginator;
@@ -67,8 +67,8 @@ export class MovimientoComponent implements OnInit {
   
   // }
 
-  nuevoProducto(){
-    var id= this.usuario.id;
+  nuevoMovimiento(){
+    const id= this.usuario.id;
     this.dialog.open(ModalMovimientoComponent,{
       disableClose: true,
       data: id
@@ -77,9 +77,9 @@ export class MovimientoComponent implements OnInit {
     });
   }
 
-  editarProducto(movimiento:Movimiento){
+  editarMovimiento(movimiento:Movimiento){
     
-    var id= this.usuario.id;
+    const id= this.usuario.id;
     this.dialog.open(ModalMovimientoComponent,{
       disableClose: true,
       data: {movimiento,id}

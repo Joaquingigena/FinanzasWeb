@@ -41,8 +41,8 @@ export class ModalMovimientoComponent implements OnInit {
        fecha:["",Validators.required]
     });
 
-    console.log(datosMovimiento.data.movimiento);
-    console.log(datosMovimiento.data.id);
+    //console.log(datosMovimiento.data.movimiento);
+    console.log("id del usuario "+datosMovimiento.id);
     //Si viene con datos se actualiza
     if(datosMovimiento.movimiento!=null){
       this.tituloAccion="Editar";
@@ -66,20 +66,22 @@ export class ModalMovimientoComponent implements OnInit {
   }
 
 ngOnInit(): void {
+  if(this.datosMovimiento.movimiento){
   this.formularioMovimiento.patchValue({
     idTipoMovimiento: this.datosMovimiento.movimiento.tipoMovimientoId,
     idCategoria: this.datosMovimiento.movimiento.categoriaId,
     descripcion: this.datosMovimiento.movimiento.descripcion,
     monto: this.datosMovimiento.movimiento.monto,
-    fecha: this.datosMovimiento.movimiento.fecha
+    fecha: new Date(this.datosMovimiento.movimiento.fecha)
   });
+}
 }
 
 
 guardarEditarMovimiento(){
 
   const movimiento: Movimiento= {
-    id: this.datosMovimiento.movimiento== null? 0: this.datosMovimiento.id,
+    id: this.datosMovimiento.movimiento== null? 0: this.datosMovimiento.movimiento.id,
     usuarioId: this.datosMovimiento.id,
     tipoMovimientoId: this.formularioMovimiento.value.idTipoMovimiento,
     categoriaId: this.formularioMovimiento.value.idCategoria,
@@ -88,8 +90,11 @@ guardarEditarMovimiento(){
     fecha: this.formularioMovimiento.value.fecha
   }
 
-  if(movimiento.id == null){
+  console.log("Este es el movimiento " + movimiento);
+  console.log(movimiento);
+  if(movimiento.id === 0){
 
+    console.log("Nuevo movimiento");
     this._movimientoService.guardar(movimiento).subscribe({
       next:(data)=>{
         if(data !=null){
@@ -104,6 +109,7 @@ guardarEditarMovimiento(){
     });
   }
   else{
+    console.log("Editar movimiento");
     this._movimientoService.modificar(movimiento).subscribe({
       next:(data)=>{
         if(data !=null){
@@ -111,7 +117,7 @@ guardarEditarMovimiento(){
           this.modalActual.close("true");
         }
         else{
-          this._utilidadService.mostrarAlerta("No se pudo agregar el movimiento","Error");
+          this._utilidadService.mostrarAlerta("No se pudo editar el movimiento","Error");
         }
       },
       error:(e)=>{console.log(e)}

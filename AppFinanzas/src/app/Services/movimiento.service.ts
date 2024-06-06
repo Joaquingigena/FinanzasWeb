@@ -25,7 +25,7 @@ export class MovimientoService {
   }
 
   modificar(request:Movimiento):Observable<Movimiento>{
-    return this.http.post<Movimiento>(`${this.urlApi}Modificar`,request);
+    return this.http.put<Movimiento>(`${this.urlApi}Modificar`,request);
   }
 
   //Habria que modificar la api
