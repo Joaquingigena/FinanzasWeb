@@ -30,12 +30,16 @@ namespace FinanzasWeb.Repository
             }
         }
 
-        public async Task<bool> Eliminar(Movimiento movimiento)
+        public async Task<bool> Eliminar(int id)
         {
             try
             {
-                _context.Movimientos.Remove(movimiento);
-                await _context.SaveChangesAsync();
+                var filasEliminadas= await _context.Movimientos.Where(m => m.Id== id).ExecuteDeleteAsync();
+
+                if(filasEliminadas == 0)
+                {
+                    return false;
+                }
 
                 return true;
             }

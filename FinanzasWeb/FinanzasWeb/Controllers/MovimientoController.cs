@@ -101,16 +101,18 @@ namespace FinanzasWeb.Controllers
         }
 
         [HttpDelete]
-        [Route("Eliminar")]
-        public async Task<ActionResult> Eliminar(MovimientoDTO movimiento)
+        [Route("Eliminar/{id:int}")]
+        public async Task<ActionResult> Eliminar(int id )
         {
             try
             {
-                var mov = _mapper.Map<Movimiento>(movimiento);
-
-               await _repositorio.Eliminar(mov);
-
-                return Ok(mov);
+               bool eliminado=await _repositorio.Eliminar(id);
+               
+                if(eliminado == false)
+                {
+                    return NotFound();
+                }
+                return Ok();
             }
             catch (Exception)
             {

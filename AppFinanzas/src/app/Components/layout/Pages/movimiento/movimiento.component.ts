@@ -53,6 +53,8 @@ export class MovimientoComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerMovimientos();
+
+    
   }
 
   // ngAfterViewInit(): void {
@@ -71,7 +73,7 @@ export class MovimientoComponent implements OnInit {
     const id= this.usuario.id;
     this.dialog.open(ModalMovimientoComponent,{
       disableClose: true,
-      data: id
+      data: {id}
     }).afterClosed().subscribe(resultado =>{
       if(resultado === "true") this.obtenerMovimientos();
     });
@@ -87,7 +89,40 @@ export class MovimientoComponent implements OnInit {
       if(resultado === "true") this.obtenerMovimientos();
     });
   }
-}
 
+  eliminarMovimiento(movimiento: Movimiento){
+
+    Swal.fire({
+  
+      title:"Desea eliminar este movimiento?",
+      text: movimiento.descripcion,
+      icon: "warning",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Si,eliminar",
+      showCancelButton: true,
+      cancelButtonColor: "#d33",
+      cancelButtonText: "No, volver"
+  
+    }).then((resultado)=>{
+  
+      if(resultado.isConfirmed){
+  
+        this._movimientoService.Eliminar(movimiento.id).subscribe({
+          next:(data)=>
+          {
+            if(data){
+              this._utilidadService.mostrarAlerta("Movimiento eliminado exitosamente","Exito");
+              this.obtenerMovimientos();
+            }
+            else {
+              this._utilidadService.mostrarAlerta("No se pudo eliminar el movimiento","Error");
+            }
+          },
+          error: (e)=>{}
+        })
+      }
+    })
+}
+}
 
 

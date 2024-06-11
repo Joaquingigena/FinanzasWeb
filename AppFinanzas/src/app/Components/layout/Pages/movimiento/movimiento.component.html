@@ -24,7 +24,8 @@
                   <!-- Position Column -->
                 <ng-container matColumnDef="Fecha">
                     <th mat-header-cell *matHeaderCellDef>Fecha </th>
-                    <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+                    <!-- Aca formateo la fecha para que no se viera la hora -->
+                    <td mat-cell *matCellDef="let element"> {{element.fecha | date: 'yyyy-MM-dd'}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="Categoria">
@@ -55,7 +56,7 @@
                             <mat-icon >edit</mat-icon>
                         </button>
 
-                        <button mat-icon-button color="warn" >
+                        <button mat-icon-button color="warn" (click)="eliminarMovimiento(element.id)">
                             <mat-icon >delete</mat-icon>
                         </button>
                     </td>

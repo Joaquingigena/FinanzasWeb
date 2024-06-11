@@ -22,6 +22,7 @@ export class ModalMovimientoComponent implements OnInit {
   tituloAccion: string= "Agregar";
   botonAccion: string = "Guardar";
   listaCategorias: Categoria[]= [];
+  filtroListaCategorias: Categoria[]=[];
   listaTipos: TipoMovimiento[]=[];
 
   constructor(
@@ -37,12 +38,14 @@ export class ModalMovimientoComponent implements OnInit {
        idTipoMovimiento: ["",Validators.required],
        idCategoria: ["",Validators.required],
        descripcion:["",Validators.required],
-       monto: ["",Validators.required],
+       monto: ["",[Validators.required,Validators.pattern('^[0-9]*$')]],
        fecha:["",Validators.required]
     });
 
     //console.log(datosMovimiento.data.movimiento);
     console.log("id del usuario "+datosMovimiento.id);
+    console.log("Movimiento "+datosMovimiento.movimiento);
+   // console.log("categoria del mov " + datosMovimiento.movimiento.descripcionCategoria)
     //Si viene con datos se actualiza
     if(datosMovimiento.movimiento!=null){
       this.tituloAccion="Editar";
@@ -75,6 +78,13 @@ ngOnInit(): void {
     fecha: new Date(this.datosMovimiento.movimiento.fecha)
   });
 }
+
+this.formularioMovimiento.get("idTipoMovimiento")?.valueChanges.subscribe(
+  tipoIdSeleccionado => {
+    this.filtroListaCategorias = this.listaCategorias.filter(cat => cat.tipoMovimientoId === tipoIdSeleccionado);
+    this.formularioMovimiento.get("idCategoria")?.setValue("");
+  }
+)
 }
 
 

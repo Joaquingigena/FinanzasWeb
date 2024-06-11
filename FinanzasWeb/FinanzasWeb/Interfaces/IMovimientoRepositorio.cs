@@ -7,7 +7,7 @@ namespace FinanzasWeb.Interfaces
         Task<List<Movimiento>> Listar(int idUsuario);
         Task<Movimiento> ObtenerUno(int id);
         Task<Movimiento> Crear(Movimiento movimiento);
-        Task<bool> Eliminar(Movimiento movimiento);
+        Task<bool> Eliminar(int id);
         Task<Movimiento> Modificar(Movimiento movimiento);
     }
 }

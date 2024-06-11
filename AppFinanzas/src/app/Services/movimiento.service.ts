@@ -28,8 +28,8 @@ export class MovimientoService {
     return this.http.put<Movimiento>(`${this.urlApi}Modificar`,request);
   }
 
-  //Habria que modificar la api
-  // Eliminar(request:Movimiento):Observable<Movimiento>{
-  //   return this.http.delete<Movimiento>(`${this.urlApi}Eliminar`,request);
-  // }
+
+  Eliminar(id:any):Observable<boolean>{
+  return this.http.delete<any>(`${this.urlApi}Eliminar/${id}`);
+ }
 }
