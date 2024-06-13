@@ -52,7 +52,7 @@ export class ModalMovimientoComponent implements OnInit {
       this.botonAccion="Actualizar";
     }
 
-    _categoriaService.listar().subscribe({
+    _categoriaService.listar(datosMovimiento.id).subscribe({
       next:(data:any) =>{
           this.listaCategorias=data;
       },
@@ -77,8 +77,7 @@ ngOnInit(): void {
     monto: this.datosMovimiento.movimiento.monto,
     fecha: new Date(this.datosMovimiento.movimiento.fecha)
   });
-
- this.formularioMovimiento.get("idCategoria")?.setValue(this.datosMovimiento.movimiento.descripcionCategoria);
+ 
 }
 
 this.formularioMovimiento.get("idTipoMovimiento")?.valueChanges.subscribe(
