@@ -8,5 +8,6 @@ namespace FinanzasWeb.DTOs
         [MaxLength(100)]
         public string Nombre { get; set; } = null!;
         public int TipoMovimientoId { get; set; }
+        public int UsuarioId { get; set; }
     }
 }

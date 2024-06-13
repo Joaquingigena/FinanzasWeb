@@ -60,27 +60,6 @@ namespace FinanzasWeb.Controllers
             }
         }
 
-        //[HttpGet]
-        //[Route("ListarCat")]
-        //public async Task<ActionResult<List<Movimiento>>> ListarCat()
-        //{
-
-        //    try
-        //    {
-        //        List<Movimiento> lista = await _repositorio.Listar();
-
-
-
-        //        return lista;
-
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
-
         [HttpPut]
         [Route("Modificar")]
         public async Task<ActionResult> Modificar(MovimientoDTO movimiento)

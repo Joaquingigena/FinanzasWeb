@@ -40,14 +40,35 @@ namespace FinanzasWeb.Controllers
         }
 
         [HttpGet]
-        [Route("Listar")]
-        public async Task<ActionResult<List<CategoriaDTO>>> Listar()
+        [Route("Listar/{id:int}")]
+        public async Task<ActionResult<List<CategoriaDTO>>> Listar(int id)
         {
             try
             {
-                var lista = await _repositorio.Listar();
+                var lista = await _repositorio.Listar(id);
 
                 return _mapper.Map<List<CategoriaDTO>>(lista);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpDelete]
+        [Route("Eliminar/{id:int}")]
+        public async Task<ActionResult> Eliminar(int id)
+        {
+            try
+            {
+                bool eliminado = await _repositorio.Eliminar(id);
+
+                if (eliminado == false)
+                {
+                    return NotFound();
+                }
+                return Ok();
             }
             catch (Exception)
             {

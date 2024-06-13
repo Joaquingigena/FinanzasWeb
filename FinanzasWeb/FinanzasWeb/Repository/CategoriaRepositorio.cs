@@ -31,12 +31,16 @@ namespace FinanzasWeb.Repository
             }
         }
 
-        public async Task<bool> Elimnar(Categoria categoria)
+        public async Task<bool> Eliminar(int id)
         {
             try
             {
-                _context.Categorias.Remove(categoria);
-                await _context.SaveChangesAsync();
+                var filasEliminadas = await _context.Categorias.Where(cat => cat.Id == id).ExecuteDeleteAsync();
+
+                if (filasEliminadas == 0)
+                {
+                    return false;
+                }
 
                 return true;
             }
@@ -47,11 +51,11 @@ namespace FinanzasWeb.Repository
             }
         }
 
-        public async Task<List<Categoria>> Listar()
+        public async Task<List<Categoria>> Listar(int idUsuario)
         {
             try
             {
-                return await _context.Categorias.ToListAsync();
+                return await _context.Categorias.Where(cat => cat.UsuarioId == idUsuario).ToListAsync();
             }
             catch (Exception)
             {

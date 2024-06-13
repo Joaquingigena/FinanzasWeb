@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
 import { UtilidadService } from 'src/app/Reutilizable/utilidad.service';
 import { Usuario } from 'src/app/Interfaces/usuario';
 import { ModalMovimientoComponent } from '../../Modales/modal-movimiento/modal-movimiento.component';
+import { NotFoundError } from 'rxjs';
+
 
 @Component({
   selector: 'app-movimiento',
@@ -18,6 +20,7 @@ import { ModalMovimientoComponent } from '../../Modales/modal-movimiento/modal-m
 })
 export class MovimientoComponent implements OnInit {
 
+  prueba: number=22;
   usuario :Usuario;
   columnaTabla: string[] = ["Fecha","Tipo","Categoria","Descripcion","Monto","Acciones"];
   dataInicio: Movimiento[]=[];
@@ -91,7 +94,7 @@ export class MovimientoComponent implements OnInit {
   }
 
   eliminarMovimiento(movimiento: Movimiento){
-
+  
     Swal.fire({
   
       title:"Desea eliminar este movimiento?",
@@ -110,15 +113,15 @@ export class MovimientoComponent implements OnInit {
         this._movimientoService.Eliminar(movimiento.id).subscribe({
           next:(data)=>
           {
-            if(data){
+            console.log(data);
+
               this._utilidadService.mostrarAlerta("Movimiento eliminado exitosamente","Exito");
               this.obtenerMovimientos();
-            }
-            else {
-              this._utilidadService.mostrarAlerta("No se pudo eliminar el movimiento","Error");
-            }
+         
           },
-          error: (e)=>{}
+          error: (e)=>{
+            this._utilidadService.mostrarAlerta("No se pudo eliminar el movimiento","Error");
+          }
         })
       }
     })
