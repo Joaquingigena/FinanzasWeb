@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 import { UtilidadService } from 'src/app/Reutilizable/utilidad.service';
 import { Usuario } from 'src/app/Interfaces/usuario';
 import { ModalMovimientoComponent } from '../../Modales/modal-movimiento/modal-movimiento.component';
-import { NotFoundError } from 'rxjs';
+
 
 
 @Component({
@@ -20,7 +20,6 @@ import { NotFoundError } from 'rxjs';
 })
 export class MovimientoComponent implements OnInit {
 
-  prueba: number=22;
   usuario :Usuario;
   columnaTabla: string[] = ["Fecha","Tipo","Categoria","Descripcion","Monto","Acciones"];
   dataInicio: Movimiento[]=[];
@@ -55,9 +54,7 @@ export class MovimientoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.obtenerMovimientos();
-
-    
+    this.obtenerMovimientos();    
   }
 
   // ngAfterViewInit(): void {

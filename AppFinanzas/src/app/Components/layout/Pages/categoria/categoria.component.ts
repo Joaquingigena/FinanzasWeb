@@ -65,8 +65,6 @@ export class CategoriaComponent implements OnInit {
   }
 
   agregarCategoria(){
-    
-
     const categoria: Categoria={
       nombre: this.formularioCat.value.nombre,
       tipoMovimientoId: this.formularioCat.value.tipoMovimientoId,
@@ -87,4 +85,38 @@ export class CategoriaComponent implements OnInit {
       error: (e)=>{}
     });
   }
+
+  eliminarCategoria(categoria: Categoria){
+  
+    Swal.fire({
+  
+      title:"Desea eliminar esta categoria?",
+      text: categoria.nombre,
+      icon: "warning",
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Si,eliminar",
+      showCancelButton: true,
+      cancelButtonColor: "#d33",
+      cancelButtonText: "No, volver"
+  
+    }).then((resultado)=>{
+  
+      if(resultado.isConfirmed){
+  
+        this._categoriaService.eliminar(categoria.id).subscribe({
+          next:(data)=>
+          {
+            console.log(data);
+
+              this._utilidadService.mostrarAlerta("Categoria eliminada exitosamente","Exito");
+              this.obtenerCategorias();
+         
+          },
+          error: (e)=>{
+            this._utilidadService.mostrarAlerta("No se pudo eliminar la categoria","Error");
+          }
+        })
+      }
+    })
+}
 }
