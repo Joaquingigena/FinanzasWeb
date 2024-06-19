@@ -23,6 +23,7 @@ builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 builder.Services.AddScoped<ITipoMovimientoRepositorio, TipoMovimientoRepositorio>();
 builder.Services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
 builder.Services.AddScoped<IMovimientoRepositorio, MovimientoRepositorio>();
+builder.Services.AddScoped<IReporteRepositorio, ReporteRepositorio>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(op => op.UseSqlServer("name=cadenaSql"));
 
