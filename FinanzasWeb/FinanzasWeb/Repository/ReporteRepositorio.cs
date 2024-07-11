@@ -40,6 +40,9 @@ namespace FinanzasWeb.Repository
                     reporte.TotalIngresos = listaMovimientos.Where(m => m.TipoMovimientoId == 1).Sum(m => m.Monto);
                     reporte.TotalGastos= listaMovimientos.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto);
                     reporte.Balance = reporte.TotalIngresos - reporte.TotalGastos;
+
+                    //Movimientos por mes
+                    reporte.MovimientosXMes =  movimientosxMes();
                 }
 
                 return reporte;
@@ -50,6 +53,29 @@ namespace FinanzasWeb.Repository
                 throw ex;
             }
           
+        }
+
+        public  List<MovimientosXmesDTO> movimientosxMes()
+        {
+            try
+            {
+                var movimientos=  _context.Movimientos
+                    .GroupBy(m => new { m.Fecha.Year, m.Fecha.Month })
+                    .Select(g => new MovimientosXmesDTO
+                    {
+                        Mes= g.Key.Month,
+                        Ingresos= g.Where(m=> m.TipoMovimientoId==1).Sum(m=>m.Monto),
+                        Egresos = g.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto)
+                    }
+                    ).ToList();
+
+                return movimientos;
+            } 
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

@@ -6,5 +6,6 @@
         public decimal Balance { get; set; }
         public decimal TotalIngresos { get; set; }
         public decimal TotalGastos { get; set; }
+        public List<MovimientosXmesDTO> MovimientosXMes { get; set; }
     }
 }

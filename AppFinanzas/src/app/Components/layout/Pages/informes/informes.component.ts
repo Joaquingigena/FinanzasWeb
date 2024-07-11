@@ -11,10 +11,14 @@ Chart.register(...registerables);
 })
 export class InformesComponent implements OnInit {
   
+   totalIngresos: string= "23000";
+   totalEgresos: string= "17000";
+
   private labell: any[];
   private ingresos: any[];
   private egresos: any[];
   private balance: any[];
+
   private categorias: any[];
   private gastos: any[];
   
