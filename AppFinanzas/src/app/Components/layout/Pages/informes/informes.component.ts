@@ -1,6 +1,10 @@
 import { Component,OnInit } from '@angular/core';
 
 import { Chart,registerables } from 'chart.js';
+import { Reporte } from 'src/app/Interfaces/reporte';
+import { Usuario } from 'src/app/Interfaces/usuario';
+import { ReporteService } from 'src/app/Services/reporte.service';
+import { UtilidadService } from 'src/app/Reutilizable/utilidad.service';
 
 Chart.register(...registerables);
 
@@ -22,7 +26,25 @@ export class InformesComponent implements OnInit {
   private categorias: any[];
   private gastos: any[];
   
-  constructor() {
+  reporte? : Reporte;
+  usuario: Usuario;
+
+  constructor(
+    private reporteService: ReporteService,
+    private utilidadService: UtilidadService
+  ) {
+
+    this.usuario= utilidadService.obtenerUsuario()
+    
+    reporteService.reporte(this.usuario.id).subscribe({
+      next:(data)=>{
+        console.log(data);
+        this.reporte= data;
+      },
+      error:(e)=>{}
+    })
+
+    console.log("Reporte" +this.reporte);
     this.labell = ["Julio", "Agosto", "Septiembre", "Octubre"];
     this.ingresos = [5000, 6000, 7000, 8000];
     this.egresos = [2000, 2500, 3000, 3500];

@@ -31,15 +31,15 @@ namespace FinanzasWeb.Repository
 
                     var listaPorFechas= listaMovimientos.Where(m => m.Fecha >= fecha_inicio && m.Fecha <= fecha_fin).ToList();
 
-                    reporte.TotalIngresos = listaPorFechas.Where(m => m.TipoMovimientoId == 1).Sum(m => m.Monto);
-                    reporte.TotalGastos = listaPorFechas.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto);
-                    reporte.Balance = reporte.TotalIngresos - reporte.TotalGastos;
+                    reporte.TotalIngresos = (listaPorFechas.Where(m => m.TipoMovimientoId == 1).Sum(m => m.Monto)).ToString();
+                    reporte.TotalGastos = (listaPorFechas.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto)).ToString();
+                    //reporte.Balance = reporte.TotalIngresos - reporte.TotalGastos
                 }
                 else
                 {
-                    reporte.TotalIngresos = listaMovimientos.Where(m => m.TipoMovimientoId == 1).Sum(m => m.Monto);
-                    reporte.TotalGastos= listaMovimientos.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto);
-                    reporte.Balance = reporte.TotalIngresos - reporte.TotalGastos;
+                    reporte.TotalIngresos = (listaMovimientos.Where(m => m.TipoMovimientoId == 1).Sum(m => m.Monto)).ToString();
+                    reporte.TotalGastos= (listaMovimientos.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto)).ToString();
+                    //reporte.Balance = (reporte.TotalIngresos - reporte.TotalGastos).ToString();
 
                     //Movimientos por mes
                     reporte.MovimientosXMes =  movimientosxMes();
@@ -64,8 +64,8 @@ namespace FinanzasWeb.Repository
                     .Select(g => new MovimientosXmesDTO
                     {
                         Mes= g.Key.Month,
-                        Ingresos= g.Where(m=> m.TipoMovimientoId==1).Sum(m=>m.Monto),
-                        Egresos = g.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto)
+                        Ingresos= (g.Where(m => m.TipoMovimientoId == 1).Sum(m => m.Monto)).ToString(),
+                        Egresos = (g.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto)).ToString()
                     }
                     ).ToList();
 

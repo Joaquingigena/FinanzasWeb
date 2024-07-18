@@ -3,9 +3,9 @@
     public class ReporteDTO
     {
         public int idUsuario { get; set; }
-        public decimal Balance { get; set; }
-        public decimal TotalIngresos { get; set; }
-        public decimal TotalGastos { get; set; }
-        public List<MovimientosXmesDTO> MovimientosXMes { get; set; }
+        public string? Balance { get; set; }
+        public string TotalIngresos { get; set; }
+        public string TotalGastos { get; set; }
+        public List<MovimientosXmesDTO> MovimientosXMes { get; set; } = new List<MovimientosXmesDTO>();
     }
 }

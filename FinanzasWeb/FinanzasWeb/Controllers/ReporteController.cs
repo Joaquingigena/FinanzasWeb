@@ -15,7 +15,8 @@ namespace FinanzasWeb.Controllers
             _repositorio = repositorio;
         }
 
-        [HttpPost]
+        [HttpGet]
+        [Route("Listar/{idUsuario:int}")]
         public async Task<ActionResult<ReporteDTO>> Reporte(int idUsuario, string? fechaInicio, string? fechaFin)
         {
             try
