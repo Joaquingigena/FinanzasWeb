@@ -27,7 +27,9 @@ namespace FinanzasWeb.Repository
 
             try
             {
-                listaMovimientos = await _context.Movimientos.Where(m => m.UsuarioId == idUsuario).ToListAsync();
+                listaMovimientos = await _context.Movimientos.Where(m => m.UsuarioId == idUsuario)
+                    .Include(m => m.Categoria)
+                    .ToListAsync();
 
                 if(fechaInicio!=null && fechaFin!=null) {
 
@@ -51,10 +53,12 @@ namespace FinanzasWeb.Repository
                                          .Select(g => new CatXMesDTO {
                                             Nombre= g.Key,
                                             Ingresos= g.Where(g => g.TipoMovimientoId ==1).Sum(g => g.Monto).ToString(),
-                                            Egresos = g.Where(g => g.TipoMovimientoId == 2).Sum(g => g.Monto).ToString()
+                                            Egresos = g.Where(g => g.TipoMovimientoId == 2).Sum(g => g.Monto).ToString(),
+                                            
                                          }
                                          ).ToList();
 
+                    reporte.CategoriasXMovimientos = listaCategorias;
                     //Movimientos por mes
                     reporte.MovimientosXMes =  movimientosxMes();
                 }

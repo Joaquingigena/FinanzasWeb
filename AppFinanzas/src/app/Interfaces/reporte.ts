@@ -1,3 +1,4 @@
+import { categoriasMontos } from "./categoriasMontos"
 import { MovimientoXMes } from "./movimientosXMes"
 
 export interface Reporte{
@@ -7,4 +8,5 @@ export interface Reporte{
     totalIngresos:string,
     totalGastos:string
     movimientosXMes: MovimientoXMes[]
+    categoriasXMovimientos: categoriasMontos[]
 }
