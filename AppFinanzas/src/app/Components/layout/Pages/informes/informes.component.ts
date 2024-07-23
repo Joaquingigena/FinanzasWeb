@@ -15,14 +15,11 @@ Chart.register(...registerables);
 })
 export class InformesComponent implements OnInit {
   
-   totalIngresos: string= "23000";
-   totalEgresos: string= "17000";
-
-  private labell: any[];
-  private ingresos: any[];
-  private egresos: any[];
-  private balance: any[];
-
+  private labell: string[]=[];
+  private ingresos: any[]=[];
+  private egresos: any[]=[];
+  private balanceMensual: any[]=[];
+  
   private categorias: any[];
   private gastos: any[];
   
@@ -30,31 +27,57 @@ export class InformesComponent implements OnInit {
   usuario: Usuario;
 
   constructor(
-    private reporteService: ReporteService,
+    private _reporteService: ReporteService,
     private utilidadService: UtilidadService
   ) {
 
-    this.usuario= utilidadService.obtenerUsuario()
-    
-    reporteService.reporte(this.usuario.id).subscribe({
-      next:(data)=>{
-        console.log(data);
-        this.reporte= data;
-      },
-      error:(e)=>{}
-    })
+    this.usuario= utilidadService.obtenerUsuario();
 
-    console.log("Reporte" +this.reporte);
-    this.labell = ["Julio", "Agosto", "Septiembre", "Octubre"];
-    this.ingresos = [5000, 6000, 7000, 8000];
-    this.egresos = [2000, 2500, 3000, 3500];
-    this.balance = this.ingresos.map((ingreso, index) => ingreso - this.egresos[index]);
+    // this.labell = ["Julio", "Agosto", "Septiembre", "Octubre"];
+    // this.ingresos = [5000, 6000, 7000, 8000];
+    // this.egresos = [2000, 2500, 3000, 3500];
+    // this.balance = this.ingresos.map((ingreso, index) => ingreso - this.egresos[index]);
 
     this.categorias = ["Alimentación", "Transporte", "Entretenimiento", "Salud"];
     this.gastos = [500, 300, 200, 100];
   }
   
   ngOnInit(): void {
+    this._reporteService.reporte(this.usuario.id).subscribe({
+      next:(data)=>{
+        console.log("Respuesta de la api");
+        console.log(data);
+        this.reporte= data;
+
+        console.log(this.reporte);
+        console.log(this.reporte.movimientosXMes);
+
+        if(this.reporte && this.reporte.movimientosXMes){
+        this.reporte.movimientosXMes.forEach((movimiento)=>{
+          this.labell.push( this.nombreMes(movimiento.mes)),
+          this.ingresos.push(movimiento.ingresos);
+          this.egresos.push(movimiento.egresos);
+          this.balanceMensual.push(movimiento.balanceMensual)
+        })
+        
+        this.renderizarGraficos();
+      }
+        else{
+          console.log("movimientoxMes es undefined");
+        }
+
+      },
+      error:(e)=>{}
+    });
+
+  }
+
+  nombreMes(mes:number):string{
+    var meses= ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+
+    return meses[mes-1];
+  }
+  renderizarGraficos(){
     const BarChart = new Chart("chart", {
       type: 'bar', // Gráfico de barras para ingresos y egresos
       data: {
@@ -74,14 +97,14 @@ export class InformesComponent implements OnInit {
             borderColor: "rgba(255, 99, 132, 1)",
             borderWidth: 1
           },
-          {
-            label: "Balance",
-            type: 'line',
-            data: this.balance,
-            borderColor: "rgba(153, 102, 255, 1)",
-            fill: false,
-            tension: 0.1
-          }
+           {
+             label: "Balance",
+             type: 'line',
+             data: this.balanceMensual,
+             borderColor: "rgba(153, 102, 255, 1)",
+             fill: false,
+             tension: 0.01
+           }
         ]
       },
       options: {
@@ -122,6 +145,7 @@ export class InformesComponent implements OnInit {
         responsive: true
       }
     });
+  
   }
   }
 

@@ -1,12 +1,9 @@
 ﻿namespace FinanzasWeb.DTOs
 {
-    public class MovimientosXmesDTO
+    public class CatXMesDTO
     {
-        public int Mes { get; set; }
+        public string? Nombre { get; set; }
         public string? Ingresos { get; set; }
         public string? Egresos { get; set; }
-        public string? BalanceMensual { get; set; }
-
     }
 }
-

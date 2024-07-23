@@ -20,6 +20,11 @@ namespace FinanzasWeb.Repository
         {
             List<Movimiento> listaMovimientos=new List<Movimiento>();
             ReporteDTO reporte= new ReporteDTO();
+
+            List<CategoriaDTO> catXMes= new List<CategoriaDTO>();
+
+            List<Categoria> categorias = new List<Categoria>();
+
             try
             {
                 listaMovimientos = await _context.Movimientos.Where(m => m.UsuarioId == idUsuario).ToListAsync();
@@ -39,7 +44,16 @@ namespace FinanzasWeb.Repository
                 {
                     reporte.TotalIngresos = (listaMovimientos.Where(m => m.TipoMovimientoId == 1).Sum(m => m.Monto)).ToString();
                     reporte.TotalGastos= (listaMovimientos.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto)).ToString();
-                    //reporte.Balance = (reporte.TotalIngresos - reporte.TotalGastos).ToString();
+                    reporte.Balance = ((listaMovimientos.Where(m => m.TipoMovimientoId == 1).Sum(m => m.Monto))- (listaMovimientos.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto))).ToString();
+
+                    //Categorias
+                    var listaCategorias= listaMovimientos.GroupBy(m => m.Categoria.Nombre)
+                                         .Select(g => new CatXMesDTO {
+                                            Nombre= g.Key,
+                                            Ingresos= g.Where(g => g.TipoMovimientoId ==1).Sum(g => g.Monto).ToString(),
+                                            Egresos = g.Where(g => g.TipoMovimientoId == 2).Sum(g => g.Monto).ToString()
+                                         }
+                                         ).ToList();
 
                     //Movimientos por mes
                     reporte.MovimientosXMes =  movimientosxMes();
@@ -59,13 +73,15 @@ namespace FinanzasWeb.Repository
         {
             try
             {
-                var movimientos=  _context.Movimientos
+                var movimientos = _context.Movimientos
                     .GroupBy(m => new { m.Fecha.Year, m.Fecha.Month })
                     .Select(g => new MovimientosXmesDTO
                     {
-                        Mes= g.Key.Month,
-                        Ingresos= (g.Where(m => m.TipoMovimientoId == 1).Sum(m => m.Monto)).ToString(),
-                        Egresos = (g.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto)).ToString()
+                        Mes = g.Key.Month,
+                        Ingresos = (g.Where(m => m.TipoMovimientoId == 1).Sum(m => m.Monto)).ToString(),
+                        Egresos = (g.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto)).ToString(),
+                        BalanceMensual = (g.Where(m => m.TipoMovimientoId == 1).Sum(m => m.Monto) -
+                        g.Where(m => m.TipoMovimientoId == 2).Sum(m => m.Monto)).ToString()
                     }
                     ).ToList();
 

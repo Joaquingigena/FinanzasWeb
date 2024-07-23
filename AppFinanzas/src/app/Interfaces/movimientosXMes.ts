@@ -2,5 +2,6 @@ export interface MovimientoXMes{
     
     mes: number,
     ingresos: string,
-    egresos: string
+    egresos: string,
+    balanceMensual: string
 }

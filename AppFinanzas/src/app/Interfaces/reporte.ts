@@ -6,5 +6,5 @@ export interface Reporte{
     balance: string,
     totalIngresos:string,
     totalGastos:string
-    movimientosXmes: MovimientoXMes[]
+    movimientosXMes: MovimientoXMes[]
 }
