@@ -20,7 +20,7 @@ body {
 
 /* Toolbar */
 .barra-color {
-    background-color: #00695c; /* Color principal más oscuro */
+    background-color: #333; /* Color principal más oscuro */
     color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -43,7 +43,7 @@ body {
 
 mat-sidenav {
     width: 250px;
-    background-color: #004d40; /* Color principal más oscuro */
+    background-color: #333; /* Color principal más oscuro */
     color: #ffffff;
 }
 

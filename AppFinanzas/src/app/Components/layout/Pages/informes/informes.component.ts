@@ -20,8 +20,10 @@ export class InformesComponent implements OnInit {
   private egresos: any[]=[];
   private balanceMensual: any[]=[];
   
-  private categorias: any[];
-  private gastos: any[];
+  private categoriasIng: any[]=[];
+  private categoriasEgr: any[]=[];
+  private montoIng: any[]=[];
+  private montoEgre: any[]=[];
   
   reporte? : Reporte;
   usuario: Usuario;
@@ -33,31 +35,32 @@ export class InformesComponent implements OnInit {
 
     this.usuario= utilidadService.obtenerUsuario();
 
-    // this.labell = ["Julio", "Agosto", "Septiembre", "Octubre"];
-    // this.ingresos = [5000, 6000, 7000, 8000];
-    // this.egresos = [2000, 2500, 3000, 3500];
-    // this.balance = this.ingresos.map((ingreso, index) => ingreso - this.egresos[index]);
-
-    this.categorias = ["Alimentación", "Transporte", "Entretenimiento", "Salud"];
-    this.gastos = [500, 300, 200, 100];
   }
   
   ngOnInit(): void {
     this._reporteService.reporte(this.usuario.id).subscribe({
       next:(data)=>{
-        console.log("Respuesta de la api");
-        console.log(data);
         this.reporte= data;
 
         console.log(this.reporte);
-        console.log(this.reporte.movimientosXMes);
-
         if(this.reporte && this.reporte.movimientosXMes){
+
         this.reporte.movimientosXMes.forEach((movimiento)=>{
           this.labell.push( this.nombreMes(movimiento.mes)),
           this.ingresos.push(movimiento.ingresos);
           this.egresos.push(movimiento.egresos);
           this.balanceMensual.push(movimiento.balanceMensual)
+        });
+
+        this.reporte.categoriasXMovimientos.forEach((categoria)=>{
+          if(categoria.ingresos !="0"){
+            this.montoIng.push(parseInt( categoria.ingresos));
+            this.categoriasIng.push(categoria.nombre);
+          }
+          else{
+            this.montoEgre.push(parseInt( categoria.egresos));
+            this.categoriasEgr.push(categoria.nombre);
+          }
         })
         
         this.renderizarGraficos();
@@ -122,9 +125,36 @@ export class InformesComponent implements OnInit {
     const chart = new Chart("categoriasChart", {
       type: 'doughnut',
       data: {
-        labels: this.categorias,
+        labels: this.categoriasIng,
         datasets: [{
-          data: this.gastos,
+          data: this.montoIng,
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)"
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)"
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        responsive: true
+      }
+    });
+
+    const chartGastos = new Chart("categoriasGastosChart", {
+      type: 'doughnut',
+      data: {
+        labels: this.categoriasEgr,
+        datasets: [{
+          data: this.montoEgre,
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
             "rgba(54, 162, 235, 0.2)",

@@ -19,8 +19,6 @@ export class LayoutComponent  {
 
     this.usuario= _utilidadService.obtenerUsuario();
   }
-
-
   
 cerrarSesion(){
   this._utilidadService.eliminarSesionUsuario();

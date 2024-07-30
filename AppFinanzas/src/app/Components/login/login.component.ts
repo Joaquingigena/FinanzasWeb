@@ -39,10 +39,8 @@ export class LoginComponent {
       clave: this.formularioLogin.value.clave
     }
 
-    console.log(login);
     this._usuarioService.loguear(login).subscribe({
       next:(data)=>{
-          console.log(data);
           this._utilidadService.guardarUsuario(data);
           this.router.navigate(["pages"]);
       },
