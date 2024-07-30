@@ -60,7 +60,7 @@ namespace FinanzasWeb.Repository
 
                     reporte.CategoriasXMovimientos = listaCategorias;
                     //Movimientos por mes
-                    reporte.MovimientosXMes =  movimientosxMes();
+                    reporte.MovimientosXMes =  movimientosxMes(idUsuario);
                 }
 
                 return reporte;
@@ -73,11 +73,11 @@ namespace FinanzasWeb.Repository
           
         }
 
-        public  List<MovimientosXmesDTO> movimientosxMes()
+        public  List<MovimientosXmesDTO> movimientosxMes(int idUsuario)
         {
             try
             {
-                var movimientos = _context.Movimientos
+                var movimientos = _context.Movimientos.Where(m => m.UsuarioId == idUsuario)
                     .GroupBy(m => new { m.Fecha.Year, m.Fecha.Month })
                     .Select(g => new MovimientosXmesDTO
                     {

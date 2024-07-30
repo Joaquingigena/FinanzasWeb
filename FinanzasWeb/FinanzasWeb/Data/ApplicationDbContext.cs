@@ -25,6 +25,7 @@ namespace FinanzasWeb.Data
             modelBuilder.Entity<Usuario>().Property(u => u.Email).HasMaxLength(50);
             modelBuilder.Entity<Usuario>().Property(u => u.Clave).HasMaxLength(50);
             modelBuilder.Entity<Usuario>().Property(u => u.FechaRegistro).HasColumnType("date");
+            modelBuilder.Entity<Usuario>().HasIndex(u => u.Email).IsUnique();
 
             //TipoMovimiento
             modelBuilder.Entity<TipoMovimiento>().Property(t => t.Nombre).HasMaxLength(50);

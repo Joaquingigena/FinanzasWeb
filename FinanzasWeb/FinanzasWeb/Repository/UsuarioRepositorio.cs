@@ -53,6 +53,8 @@ namespace FinanzasWeb.Repository
                 _context.Usuarios.Add(usuario);
                 await _context.SaveChangesAsync();
 
+                await CategoriasXdefecto(usuario.Id);
+
                 return usuario;
             }
             catch (Exception)
@@ -93,6 +95,32 @@ namespace FinanzasWeb.Repository
 
             return user;
             
+        }
+
+        public async Task CategoriasXdefecto(int idUsuario)
+        {
+            try
+            {
+                List<Categoria> categorias = new List<Categoria>
+                {
+                    new Categoria { UsuarioId = idUsuario,Nombre="Sueldo",TipoMovimientoId=1},
+                    new Categoria {UsuarioId = idUsuario,Nombre="Inversion",TipoMovimientoId=1},
+                    new Categoria {UsuarioId = idUsuario,Nombre="Otro",TipoMovimientoId=1},
+
+                    new Categoria {UsuarioId = idUsuario,Nombre="Alquiler",TipoMovimientoId=2},
+                    new Categoria {UsuarioId = idUsuario,Nombre="Comida",TipoMovimientoId=2},
+                    new Categoria {UsuarioId = idUsuario,Nombre="Ropa",TipoMovimientoId=2}
+                };
+
+                await _context.Categorias.AddRangeAsync(categorias);
+
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
