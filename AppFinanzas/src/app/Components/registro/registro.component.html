@@ -1,4 +1,59 @@
-<div class="body">
+<div class="registro-container">
+  <div class="background-image">
+    <img src="assets/imagen-login.avif" alt="Background Image">
+    <div class="overlay"></div>
+  </div>
+  <div class="content">
+    <div class="text-overlay">
+      <h1>Finanzas Simples</h1>
+      <p>Únete y administra tus finanzas de manera sencilla</p>
+    </div>
+    <div class="registro-form">
+      <h2>Crear Cuenta</h2>
+      <form [formGroup]="formularioRegistro" (ngSubmit)="registrar()">
+
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input formControlName="nombre" matInput autocomplete="off">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Apellido</mat-label>
+          <input formControlName="apellido" matInput autocomplete="off">
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput autocomplete="off">
+          <mat-icon matSuffix>mail</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input [type]="ocultarContrasena ? 'password' : 'text'"
+            formControlName="clave" matInput autocomplete="off">
+          <!-- <button mat-icon-button matSuffix
+            (click)="ocultarContrasena = !ocultarContrasena" type="button">
+            <mat-icon matSuffix>{{ ocultarContrasena ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button> -->
+        </mat-form-field>
+
+        <button class="full-width" mat-raised-button color="primary" type="submit"
+          [disabled]="formularioRegistro.invalid">
+          Registrarse
+          <mat-icon matSuffix>person_add</mat-icon>
+        </button>
+      </form>
+      <p>¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión</a></p>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="body">
     <div class="registro-container">
       <mat-card class="registro-card">
         <div class="header">
@@ -35,17 +90,7 @@
                 <mat-icon matSuffix>{{ ocultarContrasena ? 'visibility_off' : 'visibility' }}</mat-icon>
               </button>
             </mat-form-field>
-  
-            <!-- <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Confirmar Contraseña</mat-label>
-              <input [type]="ocultarContrasena ? 'password' : 'text'"
-                formControlName="confirmarClave" matInput autocomplete="off">
-              <button mat-icon-button matSuffix
-                (click)="ocultarContrasena = !ocultarContrasena" type="button">
-                <mat-icon matSuffix>{{ ocultarContrasena ? 'visibility_off' : 'visibility' }}</mat-icon>
-              </button>
-            </mat-form-field>
-   -->
+
             <button class="full-width" mat-raised-button color="primary" type="submit"
               [disabled]="formularioRegistro.invalid">
               Registrarse
@@ -61,5 +106,5 @@
         </mat-card-actions>
       </mat-card>
     </div>
-  </div>
+  </div> -->
   

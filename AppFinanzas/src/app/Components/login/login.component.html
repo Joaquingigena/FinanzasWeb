@@ -1,4 +1,48 @@
-<div class="body">
+<div class="login-container">
+    <div class="background-image">
+      <img src="assets/imagen-login.avif" alt="Login Background">
+      <div class="overlay"></div>
+    </div>
+    <div class="content">
+      <div class="text-overlay">
+        <h1 style="margin-bottom: 10px;">Finanzas Simples</h1>
+        <p>Administra tus finanzas de manera sencilla y eficiente</p>
+      </div>
+      <div class="login-form">
+        <h2>Iniciar Sesión</h2>
+        <form [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()">
+
+          <mat-form-field appearance="fill">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput formControlName="correo" placeholder="example@mail.com" autocomplete="off">
+            <mat-icon matSuffix>mail</mat-icon>
+            <!-- <mat-error *ngIf="formularioLogin.get('email')?.invalid">Email es requerido</mat-error> -->
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input [type]="ocultarContrasena ? 'password' : 'text'"
+            formControlName="clave" matInput autocomplete="off">
+
+            <button mat-icon-button matSuffix
+            (click)="ocultarContrasena= !ocultarContrasena" type="button">
+                <mat-icon matSuffix>{{ocultarContrasena?'visibility_off':'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+          
+          <button class="full-width" mat-raised-button color="primary" type="submit"
+                 [disabled]="formularioLogin.invalid">
+                 Ingresar
+                 <mat-icon matSuffix>login</mat-icon>
+                </button>
+        </form>
+        <p>¿No tienes una cuenta? <a routerLink="/registrar">Regístrate</a></p>
+      </div>
+    </div>
+  </div>
+  
+
+<!-- <div class="body">
     <mat-card class="loginCard">
         <div class="header">
             <h2>Login</h2>
@@ -37,7 +81,7 @@
 
             <mat-card-actions class="registro-actions">
                 <button mat-button color="accent" routerLink="/registrar">
-                  ¿No tienens cuenta? Registrate
+                  ¿No tiene cuenta? Registrate
                 </button>
               </mat-card-actions>
         </mat-card-content>
@@ -48,4 +92,4 @@
     </mat-card>  
 
 
-</div>
+</div> -->

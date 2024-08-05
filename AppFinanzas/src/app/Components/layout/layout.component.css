@@ -75,7 +75,7 @@ mat-nav-list mat-list-item {
 /* Content */
 .content-container {
     padding: 20px;
-    background-color: #e0f7fa;  /* Fondo claro para contraste */
+    background-color: #dcdede;  /* Fondo claro para contraste */
     min-height: 100vh;
     box-sizing: border-box;
 }

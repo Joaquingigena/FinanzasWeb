@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnDestroy } from '@angular/core';
 
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import {Router} from '@angular/router';
@@ -10,7 +10,7 @@ import { Usuario } from 'src/app/Interfaces/usuario';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
-export class RegistroComponent {
+export class RegistroComponent  {
 
   formularioRegistro: FormGroup;
   ocultarContrasena:boolean=true;
@@ -50,4 +50,5 @@ export class RegistroComponent {
       }
     });
   }
+
 }

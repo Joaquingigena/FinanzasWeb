@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpResponse} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Usuario } from '../Interfaces/usuario';
@@ -29,8 +29,8 @@ export class UsuarioService {
     return this.http.put<Usuario>(`${this.urlApi}Modificar`,request);
   }
 
-  loguear(request:Login):Observable<Usuario>{
-    return this.http.post<Usuario>(`${this.urlApi}Loguear`,request);
+  loguear(request:Login):Observable<HttpResponse<Usuario>>{
+    return this.http.post<HttpResponse<Usuario>>(`${this.urlApi}Loguear`,request);
   }
   //Habria que modificar la api
   // Eliminar(request:Movimiento):Observable<Movimiento>{
